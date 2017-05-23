@@ -7,8 +7,8 @@ $(document).ready(function() {
 
     $('button').eq(0).on('click', function() {
         $.ajax({
-                url: 'https://wind-bow.gomix.me/twitch-api/streams/OgamingSC2?callback=?',
-                //url: 'https://wind-bow.gomix.me/twitch-api/streams/freecodecamp?callback=?',
+                //url: 'https://wind-bow.gomix.me/twitch-api/streams/OgamingSC2?callback=?',
+                url: 'https://wind-bow.gomix.me/twitch-api/streams/freecodecamp?callback=?',
                 type: 'GET',
                 dataType: 'jsonp'
             })
@@ -22,10 +22,11 @@ $(document).ready(function() {
                     $('body').append('<img src="' + data.stream.preview.medium + '" alt="miniatura"></img>');
                     $('body').append('<p>Nome: ' + data.stream.channel.name + '</p>');
                     $('body').append('<img src="' + data.stream.channel.logo + '" alt="logo"></p>');
+                    $('a').attr({ 'href': data.stream.channel.url, 'target': '_blank' });
                 }
             })
             .fail(function() {
-                console.log("error");
+                console.log("erroreeeeeee");
             })
             .always(function() {
                 console.log("complete");
@@ -36,7 +37,8 @@ $(document).ready(function() {
     $('button').eq(1).on('click', function() {
         $.ajax({
                 //url: 'https://wind-bow.gomix.me/twitch-api/channels/OgamingSC2?callback=?',
-                url: 'https://wind-bow.gomix.me/twitch-api/channels/freecodecamp?callback=?',
+                //url: 'https://wind-bow.gomix.me/twitch-api/channels/freecodecamp?callback=?',
+                url: 'https://wind-bow.gomix.me/twitch-api/streams?channel=OgamingSC2,freecodecamp?callback=?',
                 type: 'GET',
                 dataType: 'jsonp',
             })
@@ -47,7 +49,8 @@ $(document).ready(function() {
                 $('body').append('<p>Nome: ' + data.display_name + '</p>');
                 $('body').append('<p>Lingua: ' + data.language + '</p>');
             })
-            .fail(function() {
+            .fail(function(xhr) {
+            	//window.alert(xhr.getAllResponseHeaders());
                 console.log("error");
             })
             .always(function() {
@@ -57,4 +60,5 @@ $(document).ready(function() {
 
 });
 
-//fare una chiamata per lo stream ed una per  le info del cnale se quest'ultimo è offline
+//fare una chiamata per lo stream ed una per  le info del canale se quest'ultimo è offline
+//da valutare gestione errore per 404
