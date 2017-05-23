@@ -38,19 +38,22 @@ $(document).ready(function() {
         $.ajax({
                 //url: 'https://wind-bow.gomix.me/twitch-api/channels/OgamingSC2?callback=?',
                 //url: 'https://wind-bow.gomix.me/twitch-api/channels/freecodecamp?callback=?',
-                url: 'https://wind-bow.gomix.me/twitch-api/streams?channel=OgamingSC2,freecodecamp?callback=?',
+                url: 'https://wind-bow.gomix.me/twitch-api/channels/hdyrtegaf?callback=?',
                 type: 'GET',
                 dataType: 'jsonp',
             })
             .done(function(data) {
                 console.log("success");
-                $('body').append('<p>Id: ' + data._id + '</p>');
-                $('body').append('<img src="' + data.logo + '" alt="miniatura"></img>');
-                $('body').append('<p>Nome: ' + data.display_name + '</p>');
-                $('body').append('<p>Lingua: ' + data.language + '</p>');
+                if (data.id === undefined) {
+                    $('body').append('<p>Errore: ' + data.status + '</p>');
+                } else {
+                    $('body').append('<p>Id: ' + data._id + '</p>');
+                    $('body').append('<img src="' + data.logo + '" alt="miniatura"></img>');
+                    $('body').append('<p>Nome: ' + data.display_name + '</p>');
+                    $('body').append('<p>Lingua: ' + data.language + '</p>');
+                }
             })
-            .fail(function(xhr) {
-            	//window.alert(xhr.getAllResponseHeaders());
+            .fail(function() {
                 console.log("error");
             })
             .always(function() {
@@ -61,4 +64,4 @@ $(document).ready(function() {
 });
 
 //fare una chiamata per lo stream ed una per  le info del canale se quest'ultimo è offline
-//da valutare gestione errore per 404
+//se il canale esiste passo alla ricrca dello streaming
