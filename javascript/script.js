@@ -5,19 +5,24 @@ $(document).ready(function() {
         window.alert('JS caricato');
     });
 
-    $('button').on('click', function() {
+    $('button').eq(0).on('click', function() {
         $.ajax({
                 url: 'https://wind-bow.gomix.me/twitch-api/streams/OgamingSC2?callback=?',
+                //url: 'https://wind-bow.gomix.me/twitch-api/streams/freecodecamp?callback=?',
                 type: 'GET',
                 dataType: 'jsonp'
             })
             .done(function(data) {
                 console.log("success");
-                $('body').append('<p>Id: '+data.stream._id+'</p>');
-                $('body').append('<p>Game: '+data.stream.game+'</p>');
-                $('body').append('<img src="'+data.stream.preview.medium+'" alt="miniatura"></img>');
-                $('body').append('<p>Nome: '+data.stream.channel.name+'</p>');
-                $('body').append('<img src="'+data.stream.channel.logo+'" alt="logo"></p>');
+                if (data.stream === null) {
+                    $('body').append('<p>Canale attualmente OFFLINE</p>');
+                } else {
+                    $('body').append('<p>Id: ' + data.stream._id + '</p>');
+                    $('body').append('<p>Game: ' + data.stream.game + '</p>');
+                    $('body').append('<img src="' + data.stream.preview.medium + '" alt="miniatura"></img>');
+                    $('body').append('<p>Nome: ' + data.stream.channel.name + '</p>');
+                    $('body').append('<img src="' + data.stream.channel.logo + '" alt="logo"></p>');
+                }
             })
             .fail(function() {
                 console.log("error");
@@ -28,6 +33,28 @@ $(document).ready(function() {
 
     });
 
+    $('button').eq(1).on('click', function() {
+        $.ajax({
+                //url: 'https://wind-bow.gomix.me/twitch-api/channels/OgamingSC2?callback=?',
+                url: 'https://wind-bow.gomix.me/twitch-api/channels/freecodecamp?callback=?',
+                type: 'GET',
+                dataType: 'jsonp',
+            })
+            .done(function(data) {
+                console.log("success");
+                $('body').append('<p>Id: ' + data._id + '</p>');
+                $('body').append('<img src="' + data.logo + '" alt="miniatura"></img>');
+                $('body').append('<p>Nome: ' + data.display_name + '</p>');
+                $('body').append('<p>Lingua: ' + data.language + '</p>');
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+    });
+
 });
 
-//Probabilmente da registrarsi su twitch per avere api key
+//fare una chiamata per lo stream ed una per  le info del cnale se quest'ultimo è offline
