@@ -1,10 +1,19 @@
 $twitchColor: #6441a4;
-
 body {
-	max-width: 768px;
-	margin: auto;
+    max-width: 768px;
+    margin: auto;
 }
 
 .nav-pills > li.active > a {
-	background-color: $twitchColor !important;
+    background-color: $twitchColor !important;
+}
+
+div.panel-default {
+	border-color: $twitchColor;
+    .panel-heading {
+        background-color: $twitchColor;
+        h2.panel-title {
+            color: white;
+        }
+    }
 }

@@ -5,4 +5,11 @@ body {
 .nav-pills > li.active > a {
   background-color: #6441a4 !important; }
 
+div.panel-default {
+  border-color: #6441a4; }
+  div.panel-default .panel-heading {
+    background-color: #6441a4; }
+    div.panel-default .panel-heading h2.panel-title {
+      color: white; }
+
 /*# sourceMappingURL=stile.css.map */
