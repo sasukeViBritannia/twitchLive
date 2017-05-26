@@ -2,7 +2,7 @@ body {
   max-width: 768px;
   margin: auto; }
 
-.nav-pills > li.active > a {
+.nav-pills li.active > a {
   background-color: #6441a4 !important; }
 
 div.panel-default {
@@ -11,5 +11,17 @@ div.panel-default {
     background-color: #6441a4; }
     div.panel-default .panel-heading h2.panel-title {
       color: white; }
+
+@media screen and (min-width: 500px) {
+  div.tab-content {
+    border: 1px solid #6441a4; } }
+@media screen and (min-width: 500px) {
+  div.tab-content div#canali.tab-pane {
+    max-width: 70%;
+    margin: auto; } }
+
+img.img-responsive.img-circle {
+  max-width: 75px;
+  margin-bottom: 10px; }
 
 /*# sourceMappingURL=stile.css.map */

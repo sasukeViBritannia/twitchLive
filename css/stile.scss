@@ -1,15 +1,18 @@
+@import 'mixins';
 $twitchColor: #6441a4;
 body {
     max-width: 768px;
     margin: auto;
 }
 
-.nav-pills > li.active > a {
-    background-color: $twitchColor !important;
+.nav-pills {
+    li.active > a {
+        background-color: $twitchColor !important;
+    }
 }
 
 div.panel-default {
-	border-color: $twitchColor;
+    border-color: $twitchColor;
     .panel-heading {
         background-color: $twitchColor;
         h2.panel-title {
@@ -17,3 +20,22 @@ div.panel-default {
         }
     }
 }
+
+div.tab-content {
+    @include medio {
+        border: 1px solid $twitchColor;
+    }
+    div#canali.tab-pane {
+        @include medio {
+            max-width: 70%;
+            margin: auto;
+        }
+    }
+}
+
+img.img-responsive.img-circle {
+    max-width: 75px;
+    margin-bottom: 10px;
+}
+
+//da rivedere come tenere i tab sulla stessa linea e non uno sotto l'altro

@@ -93,10 +93,10 @@ $(document).ready(function() {
     });
     });*/
 
-    $('button').eq(1).on('click', function() {
+    $('button').on('click', function() {
         $.ajax({
                 //url: 'https://wind-bow.gomix.me/twitch-api/channels/OgamingSC2?callback=?',
-                url: 'https://wind-bow.gomix.me/twitch-api/channels/freecodecamp?callback=?',
+                url: 'https://wind-bow.gomix.me/twitch-api/channels/ESL_SC2?callback=?',
                 //url: 'https://wind-bow.gomix.me/twitch-api/channels/hdyrtegaf?callback=?', //canale inesistente
                 type: 'GET',
                 dataType: 'jsonp',
@@ -104,12 +104,15 @@ $(document).ready(function() {
             .done(function(data) {
                 console.log("success");
                 if (data._id === undefined) {
-                    $('body').append('<p>Errore: ' + data.status + '</p>');
+                    window.alert('Attenzione canale chiuso');
                 } else {
-                    $('body').append('<p>Id: ' + data._id + '</p>');
-                    $('body').append('<img src="' + data.logo + '" alt="miniatura"></img>');
-                    $('body').append('<p>Nome: ' + data.display_name + '</p>');
-                    $('body').append('<p>Lingua: ' + data.language + '</p>');
+                	$('img').attr('src', data.logo);
+                	$('p').children('span').eq(0).text(data.display_name);
+                	$('p').children('span').eq(1).text(data.language);
+                	$('p').children('span').eq(2).text(data.broadcaster_language);
+                	$('p').children('span').eq(3).text(data.followers);
+                	$('p').children('span').eq(4).text(data.views);
+                	$('p').children('a').attr({'href': data.url, 'target': '_blank'}).text(data.url);
                 }
             })
             .fail(function() {
