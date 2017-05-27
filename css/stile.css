@@ -2,7 +2,11 @@ body {
   max-width: 768px;
   margin: auto; }
 
-.nav-pills li.active > a {
+@media screen and (max-width: 768px) {
+  ul.nav.nav-justified > li {
+    float: left;
+    width: 49%; } }
+ul.nav.nav-justified > li.active > a {
   background-color: #6441a4 !important; }
 
 div.panel-default {

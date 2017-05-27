@@ -1,7 +1,7 @@
 'use strict';
 $(document).ready(function() {
 
-    var arrayStreamers = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "multiplayerit", "spaziogames"];
+    var arrayStreamers = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "multiplayerit"];
 
     $('p').first().on('click', function() {
         window.alert('JS caricato');
@@ -93,7 +93,7 @@ $(document).ready(function() {
     });
     });*/
 
-    $('button').on('click', function() {
+    $('#infoChannel').on('click', function() {
         $.ajax({
                 //url: 'https://wind-bow.gomix.me/twitch-api/channels/OgamingSC2?callback=?',
                 url: 'https://wind-bow.gomix.me/twitch-api/channels/ESL_SC2?callback=?',

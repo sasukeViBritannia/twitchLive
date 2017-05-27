@@ -5,9 +5,15 @@ body {
     margin: auto;
 }
 
-.nav-pills {
-    li.active > a {
-        background-color: $twitchColor !important;
+ul.nav {
+    &.nav-justified > li {
+        @include piccolo {
+            float: left;
+            width: 49%;
+        }
+        &.active > a {
+        	background-color: $twitchColor !important;
+        }
     }
 }
 
@@ -37,5 +43,3 @@ img.img-responsive.img-circle {
     max-width: 75px;
     margin-bottom: 10px;
 }
-
-//da rivedere come tenere i tab sulla stessa linea e non uno sotto l'altro
