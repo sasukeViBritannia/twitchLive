@@ -92,7 +92,7 @@ $(document).ready(function() {
 
     });
     });*/
-
+    //Informazioni sul canale
     $('#infoChannel').on('click', function() {
         $.ajax({
                 //url: 'https://wind-bow.gomix.me/twitch-api/channels/OgamingSC2?callback=?',
@@ -106,13 +106,42 @@ $(document).ready(function() {
                 if (data._id === undefined) {
                     window.alert('Attenzione canale chiuso');
                 } else {
-                	$('img').attr('src', data.logo);
-                	$('p').children('span').eq(0).text(data.display_name);
-                	$('p').children('span').eq(1).text(data.language);
-                	$('p').children('span').eq(2).text(data.broadcaster_language);
-                	$('p').children('span').eq(3).text(data.followers);
-                	$('p').children('span').eq(4).text(data.views);
-                	$('p').children('a').attr({'href': data.url, 'target': '_blank'}).text(data.url);
+                    $('.panel-body').find('img').attr('src', data.logo);
+                    $('.panel-body').find('p').children('span').eq(0).text(data.display_name);
+                    $('.panel-body').find('p').children('span').eq(1).text(data.language);
+                    $('.panel-body').find('p').children('span').eq(2).text(data.broadcaster_language);
+                    $('.panel-body').find('p').children('span').eq(3).text(data.followers);
+                    $('.panel-body').find('p').children('span').eq(4).text(data.views);
+                    $('.panel-body').find('p').children('a').attr({ 'href': data.url, 'target': '_blank' }).text(data.url);
+                }
+            })
+            .fail(function() {
+                console.log("error");
+            })
+            .always(function() {
+                console.log("complete");
+            });
+    });
+    //informazioni sullo streaming attivo
+    $('#liveChannel').on('click', function() {
+        $.ajax({
+                //url: 'https://wind-bow.gomix.me/twitch-api/channels/OgamingSC2?callback=?',
+                url: 'https://wind-bow.gomix.me/twitch-api/streams/ESL_SC2?callback=?',
+                //url: 'https://wind-bow.gomix.me/twitch-api/channels/hdyrtegaf?callback=?', //canale inesistente
+                type: 'GET',
+                dataType: 'jsonp',
+            })
+            .done(function(data) {
+                console.log("success");
+                if (data.stream === null){
+                	 window.alert('Canale OFFLINE');
+                }
+                else{
+                	$('div.caption').eq(0).find('h4').text(data.stream.channel.display_name);
+                	$('div.caption').eq(0).find('p').eq(0).find('span').text(data.stream.game);
+                	$('div.caption').eq(0).find('p').eq(1).find('span').text(data.stream.created_at);
+                	$('div.caption').eq(0).find('p').eq(2).find('span').text(data.stream.viewers);
+                	$('div.thumbnail').eq(0).find('img').attr('src', data.stream.preview.large);
                 }
             })
             .fail(function() {
