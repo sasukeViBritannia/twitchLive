@@ -12,7 +12,7 @@ ul.nav {
             width: 49%;
         }
         &.active > a {
-        	background-color: $twitchColor !important;
+            background-color: $twitchColor !important;
         }
     }
 }
@@ -36,6 +36,9 @@ div.tab-content {
             max-width: 70%;
             margin: auto;
         }
+    }
+    div#dirette.tab-pane > div.row div.thumbnail {
+        display: none;
     }
 }
 
