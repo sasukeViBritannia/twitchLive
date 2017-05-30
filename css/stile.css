@@ -23,7 +23,10 @@ div.panel-default {
   div.tab-content div#canali.tab-pane {
     max-width: 70%;
     margin: auto; } }
-div.tab-content div#dirette.tab-pane > div.row div.thumbnail {
+div.tab-content div#dirette.tab-pane div#nessuno {
+  color: #6441a4;
+  display: none; }
+div.tab-content div#dirette.tab-pane div.row div.thumbnail {
   display: none; }
 
 img.img-responsive.img-circle {

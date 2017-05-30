@@ -37,8 +37,14 @@ div.tab-content {
             margin: auto;
         }
     }
-    div#dirette.tab-pane > div.row div.thumbnail {
-        display: none;
+    div#dirette.tab-pane {
+    	div#nessuno {
+    		color: $twitchColor;
+    		display: none
+    	}
+        div.row div.thumbnail {
+            display: none;
+        }
     }
 }
 

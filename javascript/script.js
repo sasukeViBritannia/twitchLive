@@ -2,13 +2,13 @@
 $(document).ready(function() {
 
     var arrayStreamers = ["ESL_SC2", "OgamingSC2", "cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "multiplayerit"];
-    //var $selettoreCanale = $('div#patriarca').find('div.panel');
+    //var arrayStreamers = ["cretetion", "freecodecamp", "storbeck", "habathcx", "RobotCaleb", "noobs2ninjas", "multiplayerit"];
 
+    //Info sul canale
     function ottieniInfo(array) {
         //ripetizione azioni per ogni elemento dell'array
         array.forEach(function(element, index) {
             var $selettoreCanale = $('div#patriarca').find('div.panel').eq(index).find('div.panel-body');
-            //Informazioni sul canale
             $.ajax({
                     url: 'https://wind-bow.gomix.me/twitch-api/channels/' + element + '?callback=?',
                     type: 'GET',
@@ -38,12 +38,11 @@ $(document).ready(function() {
         });
     }
 
+    //Info sullo streaming
     function isLive(array) {
-
+    	//var nessunoStreaming = true;
         array.forEach(function(element, index) {
-
             var selettoreStreaming = $('div.thumbnail').eq(index).find('div.caption');
-            //Informazioni sullo streaming
             $.ajax({
                     url: 'https://wind-bow.gomix.me/twitch-api/streams/' + element + '?callback=?',
                     type: 'GET',
@@ -54,11 +53,13 @@ $(document).ready(function() {
                     if (data.stream === null) {
                         //window.alert('Canale OFFLINE');
                     } else {
+                    	//nessunoStreaming = false;
                         selettoreStreaming.find('h4').text(data.stream.channel.display_name);
                         selettoreStreaming.find('p').eq(0).find('span').text(data.stream.game);
                         selettoreStreaming.find('p').eq(1).find('span').text((data.stream.created_at).substring(0, 10));
                         selettoreStreaming.find('p').eq(2).find('span').text(data.stream.viewers);
                         $('div.thumbnail').eq(index).find('img').attr('src', data.stream.preview.large);
+                        $('div.thumbnail').eq(index).show();
                     }
                 })
                 .fail(function() {
@@ -68,7 +69,10 @@ $(document).ready(function() {
                     console.log("complete");
                 });
         });
-
+        //window.alert('nessunoStreaming = '+nessunoStreaming);
+        /*if(nessunoStreaming){
+        	$('div#dirette').find('div#nessuno').show('slow');
+        }*/
     }
 
     ottieniInfo(arrayStreamers); //chiamata funzione ottiene info canali
